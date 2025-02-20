@@ -1,0 +1,46 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: oebs-pdlhendelser
+  namespace: team-oebs
+  labels:
+    team: team-oebs
+spec:
+  image: repo.adeo.no:5443/oebs-1/oebs-pdlhendelser:0.7.1
+  port: 8080
+  replicas:
+    min: 2
+    max: 2
+    cpuThresholdPercentage: 50
+  liveness:
+    path: /internal/isalive
+    initialDelay: 60
+    timeout: 10
+  readiness:
+    path: /internal/isready
+    initialDelay: 60
+    timeout: 10
+  resources:
+    limits:
+      cpu: 768m
+      memory: 768Mi
+    requests:
+      cpu: 200m
+      memory: 512Mi
+  prometheus:
+    enabled: true
+    path: /actuator/prometheus
+  kafka:
+    pool: nav-prod
+  azure:
+    application:
+      enabled: true
+      tenant: nav.no
+  vault:
+    enabled: true
+    paths:
+      - kvPath: "kv/prod/fss/oebs-pdlhendelser/team-oebs"
+        mountPath: "/var/run/secrets/nais.io/vault"
+
+  ingresses:
+    - "https://oebs-pdlhendelser.intern.nav.no"
