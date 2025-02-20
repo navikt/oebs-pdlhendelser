@@ -6,7 +6,7 @@ metadata:
   labels:
     team: team-oebs
 spec:
-  image: repo.adeo.no:5443/oebs-1/oebs-pdlhendelser:0.7.1
+  image: {{ image }}
   port: 8080
   replicas:
     min: 2
