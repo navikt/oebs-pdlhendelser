@@ -18,7 +18,7 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <kafka-avro-serializer.version>7.3.1</kafka-avro-serializer.version>
+        <kafka-avro-serializer.version>7.9.0</kafka-avro-serializer.version>
         <logback-core>1.5.16</logback-core>
         <logback-classic>1.5.16</logback-classic>
         <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
