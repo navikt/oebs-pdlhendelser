@@ -18,7 +18,7 @@ public class PdlLoggRepositoryImpl implements PdlLoggRepositoryCustom {
 
 	@Override
 	public void pingKallLogg() {
-		entityManager.createQuery("SELECT n FROM PdlLogg n WHERE id = 0", PdlLogg.class) //
+		entityManager.createQuery("SELECT n FROM PdlLogg n WHERE n.id = 0", PdlLogg.class) //
 				.getResultList();
 	}
 }
