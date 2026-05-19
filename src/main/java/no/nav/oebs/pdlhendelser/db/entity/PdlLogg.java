@@ -27,7 +27,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "XXRTV_PDL_LOGG")
+@Table(name = "XXRTV_PDL_LOGG", schema = "XXRTV")
 public class PdlLogg {
 
 	public static final String RETNING_INN = "INN";
@@ -38,7 +38,7 @@ public class PdlLogg {
 	public static final int MAX_KAFKA_KEY_LEN = 100;
 
     @Id
-	@SequenceGenerator(name = "XXRTV_KALO_SEQ", sequenceName = "XXRTV_KALO_SEQ", allocationSize = 1)
+	@SequenceGenerator(name = "XXRTV_KALO_SEQ", sequenceName = "XXRTV_KALO_SEQ", schema = "APPS", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "XXRTV_KALO_SEQ")
 	@Column(name = "KALL_LOGG_ID")
 	private Long id;

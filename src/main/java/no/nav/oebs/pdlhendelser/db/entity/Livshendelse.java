@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 @Getter
 @Setter
-@Table(name = "XXRTV_PDL_LIVSHENDELSE")
+@Table(name = "XXRTV_PDL_LIVSHENDELSE", schema = "XXRTV")
 public class Livshendelse extends BaseHendelse {
 
 	// Maxlengder i databasetabell
@@ -37,7 +37,7 @@ public class Livshendelse extends BaseHendelse {
 	public static final int MAX_ENDRINGSTYPE_LEN = 20;
 
 	@Id
-	@SequenceGenerator(name = "xxrtv_lihe_seq", sequenceName = "xxrtv_lihe_seq", allocationSize = 1)
+	@SequenceGenerator(name = "xxrtv_lihe_seq", sequenceName = "xxrtv_lihe_seq", schema = "APPS", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "xxrtv_lihe_seq")
 	@Column(name = "LIVSHENDELSE_ID")
 	private Long id;
