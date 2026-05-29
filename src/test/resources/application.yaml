@@ -1,0 +1,65 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: nais
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+    show-sql: false
+    open-in-view: false
+
+  kafka:
+    client-id: oebs-pdlhendelser
+    consumer:
+      group-id:  oebs-pdlhendelser-v1
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      max-poll-records: 100
+    listener:
+      ack-mode: record
+    bootstrap-servers: localhost:9092
+    properties:
+      security:
+        protocol: plaintext #SSL
+      schema:
+        registry:
+          url: mock:8081
+
+app:
+  kafka:
+    retry-max-attempts: 2880
+    retry-backoff-period-ms: 60000
+    authorization-exception-retry-interval-secs: 60
+    livshendelse:
+      topic: pdl.leesah-v1
+    filter:
+      start-time: 2024-08-20T00:00:00
+      livshendelser:
+        - ADRESSEBESKYTTELSE_V1
+        - BOSTEDSADRESSE_V1
+        - DOEDSFALL_V1
+        - FOEDSELSDATO_V1
+        - FOLKEREGISTERIDENTIFIKATOR_V1
+        - INNFLYTTING_TIL_NORGE
+        - KONTAKTADRESSE_V1
+        - NAVN_V1
+        - UTFLYTTING_FRA_NORGE
+
+      debug-mode: true
+  quartz:
+    job-interval-secs: 300
+  service:
+    retry-attempt-1-delay-mins: 1
+    retry-attempt-n-delay-mins: 60
+    retry-max-attempts: 5
