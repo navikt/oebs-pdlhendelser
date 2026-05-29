@@ -2,10 +2,16 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: ${NAIS_APP_NAME}
   profiles:
     active: nais
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
+    username: ${OEBS_USERNAME}
+    password: ${OEBS_PASSWORD}
+    url: ${OEBS_URL}
+
   jpa:
     hibernate:
       ddl-auto: none
@@ -20,7 +26,7 @@ spring:
     open-in-view: false
 
   kafka:
-    # client-id: ${spring.application.name}
+    client-id: ${NAIS_APP_NAME}
     consumer:
       group-id:  oebs-pdlhendelser-v1
       auto-offset-reset: earliest

@@ -8,6 +8,10 @@ metadata:
 spec:
   image: {{ image }}
   port: 8080
+
+  envFrom:
+    - secret: oebs-pdlhendelser
+
   replicas:
     min: 2
     max: 2
@@ -36,11 +40,6 @@ spec:
     application:
       enabled: true
       tenant: nav.no
-  vault:
-    enabled: true
-    paths:
-      - kvPath: "kv/prod/fss/oebs-pdlhendelser/team-oebs"
-        mountPath: "/var/run/secrets/nais.io/vault"
 
   ingresses:
     - "https://oebs-pdlhendelser.intern.nav.no"
