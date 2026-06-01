@@ -22,6 +22,9 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
+        <surefire.argLine>-Dfile.encoding=UTF-8</surefire.argLine>
+        <surefire.coverage.argLine/>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <kafka-avro-serializer.version>7.9.1</kafka-avro-serializer.version>
@@ -157,8 +160,8 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.sonarsource.scanner.maven</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
                     <configuration>
                         <argLine>${surefire.argLine} @{surefire.coverage.argLine}</argLine>
                         <redirectTestOutputToFile>true</redirectTestOutputToFile>
